@@ -1,0 +1,25 @@
+e                   # skip to end
+>>b                 # skip to beginning
+>>                  # skip first 2 chars
+3>                  # skip first 3 chars
+>><                 # left shift
+*?s>                # skip whitespace at start
+e*?s<               # skip whitespace at end
+*?d>                # skip digits at start
+*?w>                # skip first word
+*?i>                # skip first identifier
+*!l.>               # skip to first dot
+*!d>                # skip to first number
+e*!d<               # skip to end of last number
+{*?lA>}{*?lB>}      # skip starting run of A's then B's
+{*^>}b              # upper case all
+{*v>}b              # lower case all
+{*~>}b              # toggle case all
+4ib                 # insert 4 spaces at start
+8d                  # delete first 8 chars
+*?sd                # delete left hand whitespace
+e{*?sd<}b           # delete right hand whitespace
+{*{*?td}>}b         # delete tabs
+{*!l(d}e{*!l)d<}b   # delete start and end fluff and leave brackets
+{*!t>}{*?td4i4>}b   # change tabs to 4 spaces
+{*{*?lx=.>}>}b      # change 'x' to '.'

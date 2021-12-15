@@ -1,0 +1,300 @@
+# prog: e                   # skip to end
+d
+t
+d
+g
+e
+e
+n
+C
+4
+;
+z
+# prog: >>b                 # skip to beginning
+Hello World
+    Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1	col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: >>                  # skip first 2 chars
+llo World
+  Spaces at start
+aces at end
+3: testing
+long_identifier: here
+e.two.three
+ed 456 seven
+ABBBCCC
+l1	col2	col3	col4
+ll_fn(one, two, three);
+zxyz  xyz
+# prog: 3>                  # skip first 3 chars
+lo World
+ Spaces at start
+ces at end
+: testing
+ong_identifier: here
+.two.three
+d 456 seven
+BBBCCC
+1	col2	col3	col4
+l_fn(one, two, three);
+xyz  xyz
+# prog: >><                 # left shift
+ello World
+   Spaces at start
+paces at end
+23: testing
+_long_identifier: here
+ne.two.three
+red 456 seven
+AABBBCCC
+ol1	col2	col3	col4
+all_fn(one, two, three);
+yzxyz  xyz
+# prog: *?s>                # skip whitespace at start
+Hello World
+Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1	col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: e*?s<               # skip whitespace at end
+d
+t
+d
+g
+e
+e
+n
+C
+4
+;
+z
+# prog: *?d>                # skip digits at start
+Hello World
+    Spaces at start
+Spaces at end
+: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1	col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: *?w>                # skip first word
+ World
+    Spaces at start
+ at end
+123: testing
+_long_identifier: here
+.two.three
+ 456 seven
+
+1	col2	col3	col4
+_fn(one, two, three);
+  xyz
+# prog: *?i>                # skip first identifier
+ World
+    Spaces at start
+ at end
+: testing
+: here
+.two.three
+ 456 seven
+
+	col2	col3	col4
+(one, two, three);
+  xyz
+# prog: *!l.>               # skip to first dot
+
+
+
+
+
+.two.three
+
+
+
+
+
+# prog: *!d>                # skip to first number
+
+
+
+123: testing
+
+
+456 seven
+
+1	col2	col3	col4
+
+
+# prog: e*!d<               # skip to end of last number
+Hello World
+    Spaces at start
+Spaces at end
+3: testing
+a_long_identifier: here
+one.two.three
+6 seven
+AAABBBCCC
+4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: {*?lA>}{*?lB>}      # skip starting run of A's then B's
+Hello World
+    Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+CCC
+col1	col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: {*^>}b              # upper case all
+HELLO WORLD
+    SPACES AT START
+SPACES AT END
+123: TESTING
+A_LONG_IDENTIFIER: HERE
+ONE.TWO.THREE
+FRED 456 SEVEN
+AAABBBCCC
+COL1	COL2	COL3	COL4
+CALL_FN(ONE, TWO, THREE);
+XYZXYZ  XYZ
+# prog: {*v>}b              # lower case all
+hello world
+    spaces at start
+spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+aaabbbccc
+col1	col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: {*~>}b              # toggle case all
+hELLO wORLD
+    sPACES AT START
+sPACES AT END
+123: TESTING
+A_LONG_IDENTIFIER: HERE
+ONE.TWO.THREE
+FRED 456 SEVEN
+aaabbbccc
+COL1	COL2	COL3	COL4
+CALL_FN(ONE, TWO, THREE);
+XYZXYZ  XYZ
+# prog: 4ib                 # insert 4 spaces at start
+    Hello World
+        Spaces at start
+    Spaces at end
+    123: testing
+    a_long_identifier: here
+    one.two.three
+    fred 456 seven
+    AAABBBCCC
+    col1	col2	col3	col4
+    call_fn(one, two, three);
+    xyzxyz  xyz
+# prog: 8d                  # delete first 8 chars
+rld
+es at start
+t end
+ting
+dentifier: here
+three
+ seven
+C
+2	col3	col4
+one, two, three);
+xyz
+# prog: *?sd                # delete left hand whitespace
+Hello World
+Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1	col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: e{*?sd<}b           # delete right hand whitespace
+Hello World
+    Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1	col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: {*{*?td}>}b         # delete tabs
+Hello World
+    Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1col2col3col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: {*!l(d}e{*!l)d<}b   # delete start and end fluff and leave brackets
+
+
+
+
+
+
+
+
+
+(one, two, three)
+
+# prog: {*!t>}{*?td4i4>}b   # change tabs to 4 spaces
+Hello World
+    Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1    col2	col3	col4
+call_fn(one, two, three);
+xyzxyz  xyz
+# prog: {*{*?lx=.>}>}b      # change 'x' to '.'
+Hello World
+    Spaces at start
+Spaces at end
+123: testing
+a_long_identifier: here
+one.two.three
+fred 456 seven
+AAABBBCCC
+col1	col2	col3	col4
+call_fn(one, two, three);
+.yz.yz  .yz
